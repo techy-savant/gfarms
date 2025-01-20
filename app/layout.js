@@ -1,15 +1,11 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import SidebarProvider from "@/contexts/SidebarContext";
+import CartProvider from "@/contexts/CartContext";
+import ProductProvider from "@/contexts/ProductContext";
+import React from "react";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import Footer from "./components/Footer";
 
 export const metadata = {
   title: "Create Next App",
@@ -19,10 +15,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className="bg-white text-black">
+        <>
+          <SidebarProvider>
+            <CartProvider>
+              <ProductProvider>
+                <React.StrictMode>{children}</React.StrictMode>
+              </ProductProvider>
+            </CartProvider>
+          </SidebarProvider>
+        </>
       </body>
     </html>
   );
