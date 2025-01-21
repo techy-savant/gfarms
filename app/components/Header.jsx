@@ -5,6 +5,10 @@ import { SidebarContext } from "@/contexts/SidebarContext";
 import { CartContext } from "@/contexts/CartContext";
 import Link from "next/link";
 import logo from "/public/img/logo.svg";
+import {
+  WalletMultiButton,
+  WalletDisconnectButton,
+} from "@solana/wallet-adapter-react-ui";
 
 import { BsBag } from "react-icons/bs";
 import { GiBasket } from "react-icons/gi";
@@ -39,15 +43,19 @@ const Header = () => {
           </div>
         </Link>
 
+        {/* <WalletDisconnectButton /> */}
         {/* cart */}
-        <div
-          onClick={() => setIsOpen(!isOpen)}
-          className="cursor-pointer flex relative"
-        >
-          <GiBasket className="text-3xl" />
-          <div className="bg-red-500 absolute -right-2 -bottom-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center">
-            {itemAmount}
+        <div className="flex gap-x-8">
+          <div
+            onClick={() => setIsOpen(!isOpen)}
+            className="cursor-pointer flex relative"
+          >
+            <GiBasket className="text-3xl" />
+            <div className="bg-red-500 absolute right-[-5px] top-5 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center">
+              {itemAmount}
+            </div>
           </div>
+          <WalletMultiButton />
         </div>
       </div>
     </header>

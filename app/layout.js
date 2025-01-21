@@ -1,11 +1,4 @@
-import "./globals.css";
-import SidebarProvider from "@/contexts/SidebarContext";
-import CartProvider from "@/contexts/CartContext";
-import ProductProvider from "@/contexts/ProductContext";
-import React from "react";
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
-import Footer from "./components/Footer";
+import ClientLayout from './ClientLayout';
 
 export const metadata = {
   title: "Create Next App",
@@ -13,19 +6,5 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body className="bg-white text-black">
-        <>
-          <SidebarProvider>
-            <CartProvider>
-              <ProductProvider>
-                <React.StrictMode>{children}</React.StrictMode>
-              </ProductProvider>
-            </CartProvider>
-          </SidebarProvider>
-        </>
-      </body>
-    </html>
-  );
+  return <ClientLayout>{children}</ClientLayout>;
 }
