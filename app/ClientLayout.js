@@ -1,8 +1,11 @@
-'use client';
+"use client";
 
 import "./globals.css";
 import React, { useMemo } from "react";
-import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
+import {
+  ConnectionProvider,
+  WalletProvider,
+} from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import "@solana/wallet-adapter-react-ui/styles.css";
 
@@ -12,14 +15,18 @@ import ProductProvider from "@/contexts/ProductContext";
 
 import { PhantomWalletAdapter } from "@solana/wallet-adapter-phantom";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import { Toaster } from "@/components/ui/toaster";
 
 export default function ClientLayout({ children }) {
   // Define wallets and network
   const network = WalletAdapterNetwork.Devnet; // or Mainnet, Testnet
-  const wallets = useMemo(() => [
-    new PhantomWalletAdapter(), 
-    // Add other wallet adapters as needed
-  ], [network]);
+  const wallets = useMemo(
+    () => [
+      new PhantomWalletAdapter(),
+      // Add other wallet adapters as needed
+    ],
+    [network]
+  );
 
   return (
     <html lang="en">
@@ -30,15 +37,14 @@ export default function ClientLayout({ children }) {
               <SidebarProvider>
                 <CartProvider>
                   <ProductProvider>
-                    <React.StrictMode>
-                      {children}
-                    </React.StrictMode>
+                    <React.StrictMode>{children}</React.StrictMode>
                   </ProductProvider>
                 </CartProvider>
               </SidebarProvider>
             </WalletModalProvider>
           </WalletProvider>
         </ConnectionProvider>
+        <Toaster />
       </body>
     </html>
   );

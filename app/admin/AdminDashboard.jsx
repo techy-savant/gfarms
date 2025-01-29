@@ -6,6 +6,7 @@ import ProductRow from "../components/ProductRow"; // Component for rendering ea
 import { Button } from "@/components/ui/button";
 
 import { useRouter } from "next/navigation";
+import AddProduct from "../components/AddProduct";
 
 const AdminDashboard = () => {
   const router = useRouter();
@@ -56,9 +57,12 @@ const AdminDashboard = () => {
     <div className="container mx-auto py-20">
       <div className="w-full flex justify-between">
         <h1 className="text-3xl font-semibold mb-4">Admin Panel</h1>
-        <Button className="w-fit px-4 py-2" onClick={handleLogout}>
-          Logout
-        </Button>
+        <div className="flex gap-3">
+          <AddProduct />
+          <Button className="w-fit px-4 py-2" onClick={handleLogout}>
+            Logout
+          </Button>
+        </div>
       </div>
       {/* Search Bar */}
       <input

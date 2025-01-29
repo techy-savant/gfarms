@@ -1,4 +1,4 @@
-import ClientLayout from './ClientLayout';
+import ClientLayout from "./ClientLayout";
 
 export const metadata = {
   title: "Create Next App",
@@ -6,5 +6,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  return <ClientLayout>{children}</ClientLayout>;
+  return (
+    <ClientLayout>
+      {children}
+    </ClientLayout>
+  );
 }
